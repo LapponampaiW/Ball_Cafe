@@ -3,6 +3,7 @@ package com.su.lapponampai_w.ball_cafe;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,19 @@ public class MainActivity extends AppCompatActivity {
 
         bingwidget();
 
+        pressbuttonlogin();
+
+        gotoOrderActivity();
+
+    }
+
+    private void gotoOrderActivity() {
+        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void pressbuttonlogin() {
         buttonlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
 

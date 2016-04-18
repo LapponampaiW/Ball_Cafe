@@ -16,6 +16,11 @@ public class MyManage {
     MySQLiteOpenHelper openHelper;
     SQLiteDatabase readSqLiteDatabase, writeSqLiteDatabase;
     String[] columnUser = {"_id","User","Password","Name"};
+    String[] columnFood = {column_id,column_Food,column_Source,column_Price};
+    public static final String column_id = "_id";
+    public static final String column_Food = "Food";
+    public static final String column_Source = "Source";
+    public static final String column_Price = "Price";
 
     public MyManage(Context context) {
 
@@ -94,5 +99,37 @@ public class MyManage {
             return null;
         }
         return null;
+    }
+
+    public String[] readAllFood(int intColumn) {
+        String[] strAllFood = null;
+        Cursor cursor = readSqLiteDatabase.query("foodTABLE",columnFood,null,null,null,null,null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strAllFood = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(column_id));
+                        break;
+                    case 1:
+                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(column_Food));
+                        break;
+                    case 2:
+                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(column_Source));
+                        break;
+                    case 3:
+                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(column_Price));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        }
+
+        return strAllFood;
     }
 }
