@@ -30,14 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
         pressbuttonlogin();
 
-        gotoOrderActivity();
+        //gotoOrderActivity();
 
     }
 
-    private void gotoOrderActivity() {
-        Intent intent = new Intent(MainActivity.this, OrderActivity.class);
-        startActivity(intent);
-    }
+
 
 
     private void pressbuttonlogin() {
@@ -60,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-
-
-
             }
         });
     }
@@ -74,8 +68,11 @@ public class MainActivity extends AppCompatActivity {
         try {
 
             if (passwordString.equals(strings[2])) {
-                Toast t = Toast.makeText(MainActivity.this, "สำเร็จแล้ว", Toast.LENGTH_LONG);
+                Toast t = Toast.makeText(MainActivity.this, "ยินดีต้อนรับ " + strings[3], Toast.LENGTH_LONG);
                 t.show();
+                Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                intent.putExtra("welcome", strings[3]);
+                startActivity(intent);
             } else {
                 Toast t = Toast.makeText(MainActivity.this, "Username or Password Incorrect Please Check Again", Toast.LENGTH_LONG);
                 t.show();
